@@ -9,6 +9,7 @@
   "rules": {
     "max-len": "off",
     "linebreak-style": "off",
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "no-duplicate-imports": "error"
   }
 }

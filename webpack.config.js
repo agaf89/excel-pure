@@ -8,7 +8,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 const isDevelopment = !isProduction;
 
 const filename = (ext) => isDevelopment ? `bundle.${ext}` : `bundle.[hash].${ext}`;
-const localIdentName = isProduction ? '[hash:base64:5]' : '[folder]__[local]___[hash:base64:5]';
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -55,22 +54,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/i,
+        test: /\.s[ac]ss$/i,
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName,
-              },
-            },
-          },
-          {
-            loader: 'sass-loader',
-          },
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
         ],
       },
       {
