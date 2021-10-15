@@ -12,7 +12,14 @@ export class DomListener {
   initDomListener() {
     this.listeners.forEach((listener) => {
       const method = getMethodName(listener);
-      if (!this[method]) throw Error('Method ' + method + ' undefined because you have lost this. Method is not implemented in ' + this.name);
+      if (!this[method]) {
+        throw Error(
+            'Method ' +
+            method +
+            ' undefined because you have lost this. Method is not implemented in ' +
+            this.name
+        );
+      }
 
       this[method] = this[method].bind(this);
       this.$root.on(listener, this[method]);
